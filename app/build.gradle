@@ -57,5 +57,6 @@ tasks.named("dockerfileNative") {
 
 
 dockerfileNative {
-    graalArch.set("amd64")
+    graalArch.set(org.apache.tools.ant.taskdefs.condition.Os.isArch("aarch64") ? "aarch64" : "amd64")
 }
+
