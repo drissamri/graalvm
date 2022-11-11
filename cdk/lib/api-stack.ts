@@ -15,7 +15,7 @@ import * as path from "path";
 import * as Mustache from 'mustache';
 import * as fs from "fs";
 import {Asset} from 'aws-cdk-lib/aws-s3-assets';
-import {Code} from "aws-cdk-lib/aws-lambda";
+import {Architecture, Code} from "aws-cdk-lib/aws-lambda";
 
 export class ApiStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props: StackProps) {
@@ -56,9 +56,11 @@ export class ApiStack extends cdk.Stack {
 
     private createFunction(id: string, handler: string, tableName: string, props: StackProps): lambda.Function {
         let apiLambda = new lambda.Function(this, id, {
-            code: Code.fromAsset("../app/build/libs/serverless-1.0.0-lambda.zip"),
+           // code: Code.fromAsset("../app/build/libs/serverless-1.0.0-lambda.zip"),
+            code: Code.fromAsset("../serverless-1.0.0-lambda.zip"),
             runtime: lambda.Runtime.PROVIDED_AL2,
             memorySize: 1792,
+            architecture: Architecture.ARM_64,
             handler: 'io.micronaut.function.aws.proxy.MicronautLambdaHandler',
             tracing: lambda.Tracing.ACTIVE,
             environment: {
