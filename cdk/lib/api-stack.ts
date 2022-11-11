@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import {BundlingOutput, DockerImage, RemovalPolicy, StackProps} from 'aws-cdk-lib';
+import {BundlingOutput, DockerImage, Duration, RemovalPolicy, StackProps} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import {LogGroupLogDestination} from 'aws-cdk-lib/aws-apigateway';
@@ -57,6 +57,7 @@ export class ApiStack extends cdk.Stack {
         let apiLambda = new lambda.Function(this, id, {
             code: Code.fromAsset("../app/build/libs/serverless-1.0.0-lambda.zip"),
             runtime: lambda.Runtime.PROVIDED_AL2,
+            timeout: Duration.seconds(10),
             memorySize: 1792,
             handler: 'io.micronaut.function.aws.proxy.MicronautLambdaHandler',
             tracing: lambda.Tracing.ACTIVE,
