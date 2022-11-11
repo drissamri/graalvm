@@ -5,12 +5,8 @@
     "rest-api-typescript": "bin/rest-api-typescript.js"
   },
   "scripts": {
-    "build": "../node_modules/.bin/tsc",
-    "watch": "../node_modules/.bin/tsc -w",
-    "test": "../node_modules/.bin/jest --coverage --coverageReporters=cobertura --reporters=jest-junit --passWithNoTests",
-    "cdk": "../node_modules/.bin/cdk",
-    "lint": "../node_modules/.bin/eslint cdk/**/*.ts app/**/*.ts",
-    "cdk-deploy": "../node_modules/.bin/cdk deploy --all --require-approval never"
+    "cdk": "node_modules/.bin/cdk",
+    "cdk-deploy": "node_modules/.bin/cdk deploy --all --require-approval never"
   },
   "devDependencies": {
     "@types/jest": "27.5.2",
