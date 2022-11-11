@@ -24,10 +24,6 @@ jobs:
       - name: Execute Gradle build
         run: './gradlew buildNativeLambda'
         working-directory: ./app
-        with:
-          context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
 
       - uses: actions/setup-node@v2
         with:
