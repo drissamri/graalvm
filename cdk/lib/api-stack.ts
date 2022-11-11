@@ -47,7 +47,6 @@ export class ApiStack extends cdk.Stack {
                     'CreateArtistLambda': createArn,
                 })),
             deployOptions: {
-                loggingLevel: apigateway.MethodLoggingLevel.ERROR,
                 metricsEnabled: true,
                 tracingEnabled: true
             },
