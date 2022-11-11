@@ -5,6 +5,7 @@ info:
   description: A simple API to illustrate OpenAPI concepts
 
 paths:
+  /artists:
     post:
       description: Lets a user post a new artist
       requestBody:
