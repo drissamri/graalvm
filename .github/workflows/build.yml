@@ -13,17 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 11
+    #  - uses: actions/setup-java@v3
+    #    with:
+    #      distribution: temurin
+    #      java-version: 11
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+    #  - name: Setup Gradle
+    #    uses: gradle/gradle-build-action@v2
 
-      - name: Execute Gradle build
-        run: './gradlew buildNativeLambda'
-        working-directory: ./app
+     # - name: Execute Gradle build
+     #   run: './gradlew buildNativeLambda'
+     #   working-directory: ./app
 
       - uses: actions/setup-node@v2
         with:
@@ -37,5 +37,5 @@ jobs:
           aws-region: 'eu-west-1'
 
       - name: Deploy stack
-        run: 'npm install && npx cdk deploy --all --require-approval never'
+        run: 'npm install && npm run cdk-deploy'
         working-directory: ./cdk
