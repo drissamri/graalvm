@@ -1,4 +1,4 @@
-package com.drissamri.serverless;
+package com.drissamri.micronaut;
 
 import io.micronaut.runtime.Micronaut;
 
