@@ -22,7 +22,12 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Execute Gradle build
-        run: 'cd app && ./gradlew buildNativeLambda && cd ..'
+        run: './gradlew buildNativeLambda'
+        working-directory: ./app
+        with:
+          context: .
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - uses: actions/setup-node@v2
         with:
@@ -36,4 +41,5 @@ jobs:
           aws-region: 'eu-west-1'
 
       - name: Deploy stack
-        run: 'cd cdk && npx cdk deploy --all --require-approval never'
+        run: 'npm install && npx cdk deploy --all --require-approval never'
+        working-directory: ./cdk
