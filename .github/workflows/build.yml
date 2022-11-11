@@ -22,7 +22,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Execute Gradle build
-        run: 'cd app && ./gradlew buildNativeLambda'
+        run: 'cd app && ./gradlew buildNativeLambda && cd ..'
 
       - uses: actions/setup-node@v2
         with:
@@ -36,4 +36,4 @@ jobs:
           aws-region: 'eu-west-1'
 
       - name: Deploy stack
-        run: 'npx cdk deploy --all --require-approval never'
+        run: 'cd cdk && npx cdk deploy --all --require-approval never'
