@@ -5,6 +5,9 @@
     "lib": [
       "es2018"
     ],
+    "types": [
+      "node"
+    ],
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
