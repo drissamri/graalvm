@@ -30,7 +30,7 @@ dependencies {
 
 
 application {
-    mainClass.set("com.drissamri.serverless.FunctionLambdaRuntime")
+    mainClass.set("com.drissamri.serverless.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
