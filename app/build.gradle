@@ -19,7 +19,6 @@ repositories {
 }
 
 dependencies {
-    implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut:micronaut-validation")
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
