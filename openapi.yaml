@@ -6,20 +6,21 @@ info:
 
 paths:
   /artists:
-    post:
-      description: Lets a user post a new artist
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Artist'
+    get:
+      description: Returns a list of artists
       responses:
         '200':
-          description: Successfully created a new artist
+          description: Successfully returned a list of artists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artist'
         '400':
           $ref: '#/components/responses/400Error'
-      x-amazon-apigateway-integration:
+
+        x-amazon-apigateway-integration:
         uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/{{CreateArtistLambda}}/invocations"
         passthroughBehavior: "when_no_match"
         httpMethod: "POST"
