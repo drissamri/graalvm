@@ -59,7 +59,6 @@ export class ApiStack extends cdk.Stack {
             code: Code.fromAsset("../serverless-1.0.0-lambda.zip"),
             runtime: lambda.Runtime.PROVIDED_AL2,
             memorySize: 1792,
-            architecture: Architecture.ARM_64,
             handler: 'io.micronaut.function.aws.proxy.MicronautLambdaHandler',
             tracing: lambda.Tracing.ACTIVE,
             environment: {
