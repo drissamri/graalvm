@@ -1,36 +1,31 @@
 import * as cdk from 'aws-cdk-lib';
-import {BundlingOutput, DockerImage, Duration, RemovalPolicy, StackProps} from 'aws-cdk-lib';
+import {Duration, RemovalPolicy, StackProps} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
-import {LogGroupLogDestination} from 'aws-cdk-lib/aws-apigateway';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import {BillingMode, Table} from 'aws-cdk-lib/aws-dynamodb';
-import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
-import * as cloudwatch from "aws-cdk-lib/aws-logs";
-import {RetentionDays} from "aws-cdk-lib/aws-logs";
 import {ServicePrincipal} from "aws-cdk-lib/aws-iam";
 
 import * as path from "path";
 import * as Mustache from 'mustache';
 import * as fs from "fs";
-import {Asset} from 'aws-cdk-lib/aws-s3-assets';
-import {Architecture, Code} from "aws-cdk-lib/aws-lambda";
+import { Code} from "aws-cdk-lib/aws-lambda";
 
 export class ApiStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props: StackProps) {
         super(scope, id, props);
 
-        const ddb = this.createDatabase(props)
+        const ddb = this.createDatabase()
 
         const createLambda = this.createFunction('CreateArtist', 'create-artist.ts', ddb.tableName, props)
 
         ddb.grantReadWriteData(createLambda)
 
-        this.createRestApi(props, createLambda.functionArn);
+        this.createRestApi(createLambda.functionArn);
     }
 
-    private createDatabase(props: StackProps): Table {
+    private createDatabase(): Table {
         return new dynamodb.Table(this, "ArtistTable", {
             partitionKey: {name: 'id', type: dynamodb.AttributeType.STRING},
             billingMode: BillingMode.PAY_PER_REQUEST,
@@ -40,7 +35,7 @@ export class ApiStack extends cdk.Stack {
         });
     }
 
-    private createRestApi(props: StackProps, createArn: string) {
+    private createRestApi(createArn: string) {
         let api = new apigateway.SpecRestApi(this, 'ArtistsApi', {
             apiDefinition: apigateway.ApiDefinition.fromInline(
                 this.generateOpenApiSpec({
