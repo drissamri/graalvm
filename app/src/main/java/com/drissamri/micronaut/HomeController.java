@@ -25,7 +25,7 @@ public class HomeController {
     @Post
     public Map<String, Object> index() {
         Map<String, AttributeValue> itemValues = new HashMap<>();
-        itemValues.put("id", AttributeValue.builder().s("driss").build();
+        itemValues.put("id", AttributeValue.builder().s("driss").build());
         itemValues.put("albums_recoded", AttributeValue.builder().n("10").build());
 
         PutItemRequest request = PutItemRequest.builder()
