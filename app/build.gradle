@@ -23,6 +23,10 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
     compileOnly("org.graalvm.nativeimage:svm")
+    implementation 'software.amazon.awssdk:aws-sdk-java:2.18.15'
+    implementation 'software.amazon.awssdk.crt:aws-crt:0.19.10'
+    implementation 'software.amazon.awssdk:dynamodb-enhanced:2.18.15'
+
 
 
     testImplementation("io.micronaut:micronaut-http-client")
