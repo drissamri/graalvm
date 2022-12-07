@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath("com.github.docker-java:docker-java-transport-httpclient5:3.2.13") {
+        classpath("com.github.docker-java:docker-java-transport-httpclient5:3.2.14") {
             because("M1 macs need a later version of JNA")
         }
     }
@@ -8,7 +8,7 @@ buildscript {
 
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.6.4"
+    id("io.micronaut.application") version "3.6.5"
 }
 
 version = "1.0.0"
@@ -19,18 +19,14 @@ repositories {
 }
 
 dependencies {
-    implementation("io.micronaut:micronaut-validation")
-    implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
     compileOnly("org.graalvm.nativeimage:svm")
-    implementation 'software.amazon.awssdk:aws-sdk-java:2.18.15'
-
-    testImplementation("io.micronaut:micronaut-http-client")
+    implementation 'software.amazon.awssdk:dynamodb:2.18.27'
 }
 
 
 application {
-    mainClass.set("example.micronaut.Application")
+    mainClass.set("com.drissamri.micronaut.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
@@ -38,6 +34,7 @@ java {
 }
 
 graalvmNative.toolchainDetection = false
+
 micronaut {
     runtime("lambda_provided")
     testRuntime("junit5")
@@ -54,11 +51,6 @@ tasks.named("dockerfileNative") {
         "-Dio.netty.allocator.numDirectArenas=0",
         "-Dio.netty.noPreferDirect=true"
     )
-}
-
-// M1 Mac support
-dockerfileNative {
-    graalArch.set(org.apache.tools.ant.taskdefs.condition.Os.isArch("aarch64") ? "aarch64" : "amd64")
 }
 
 
