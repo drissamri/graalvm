@@ -1,4 +1,1 @@
-FROM oracle/graalvm-ce:latest
-WORKDIR /opt/graalvm
-RUN gu install native-image
-ENTRYPOINT ["native-image"]
+FROM mcr.microsoft.com/vscode/devcontainers/java:17
