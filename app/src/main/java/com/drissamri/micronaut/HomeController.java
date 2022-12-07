@@ -17,10 +17,7 @@ import java.util.Map;
 @Controller("/artists")
 
 public class HomeController {
-    DynamoDbAsyncClient dynamoDbClient = DynamoDbAsyncClient.builder()
-            .region(Region.of(System.getenv(SdkSystemSetting.AWS_REGION.environmentVariable())))
-            .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
-            .build();
+    DynamoDbAsyncClient dynamoDbClient = DynamoDbAsyncClient.builder().build();
 
     @Post
     public Map<String, Object> index() {
