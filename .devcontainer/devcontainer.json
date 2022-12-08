@@ -11,7 +11,10 @@
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
         "version": "latest",
         "moby": true
-    }
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+     "version": "latest"
+    
   },
   "onCreateCommand": "npm install -g aws-cdk && cd cdk && npm install"
 }
