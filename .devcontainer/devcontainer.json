@@ -1,20 +1,20 @@
 {
-  "name": "graalvm",
-  "image": "mcr.microsoft.com/vscode/devcontainers/java:17",
-  "extensions": [
-    "vscjava.vscode-java-pack", "dbaeumer.vscode-eslint"
-  ],
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
+	"name": "graalvm",
+	"image": "mcr.microsoft.com/vscode/devcontainers/java:17",
+	"extensions": [
+		"vscjava.vscode-java-pack", "dbaeumer.vscode-eslint"
+	],
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
 
-    },
-    "ghcr.io/devcontainers/features/docker-in-docker:1": {
-        "version": "latest",
-        "moby": true
-    },
-    "ghcr.io/devcontainers/features/sshd:1": {
-     "version": "latest"
-    
-  },
-  "onCreateCommand": "npm install -g aws-cdk && cd cdk && npm install"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {
+			"version": "latest",
+			"moby": true
+		},
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest"
+		}
+	},
+	"onCreateCommand": "npm install -g aws-cdk"
 }
